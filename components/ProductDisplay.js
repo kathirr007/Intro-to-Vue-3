@@ -14,8 +14,8 @@ app.component('product-display', {
       </div>
       <div class="product-info">
         <h1>{{ title }}</h1>
-
-        <p v-if="inStock">In Stock</p>
+        <p v-if="inStock > 10">In Stock</p>
+        <p v-else-if="inStock <= 10 && inStock > 0">Hurry..! This Product is Almost Sold out.</p>
         <p v-else>Out of Stock</p>
 
         <p>Shipping: {{ shipping }}</p>
@@ -50,15 +50,15 @@ app.component('product-display', {
         selectedVariant: 0,
         details: ['50% cotton', '30% wool', '20% polyester'],
         variants: [
-          { id: 2234, color: 'green', image: './assets/images/socks_green.jpg', quantity: 50 },
-          { id: 2235, color: 'blue', image: './assets/images/socks_blue.jpg', quantity: 0 },
+          { id: 2234, color: 'green', image: './assets/images/socks_green.jpg', quantity: 2 },
+          { id: 2235, color: 'blue', image: './assets/images/socks_blue.jpg', quantity: 11 },
         ],
         reviews: []
     }
   },
   methods: {
       addToCart() {
-          this.$emit('add-to-cart', this.variants[this.selectedVariant].id)
+          this.$emit('add-to-cart', {id: this.variants[this.selectedVariant].id, quantity: this.variants[this.selectedVariant].quantity})
       },
       updateVariant(index) {
           this.selectedVariant = index

@@ -6,13 +6,17 @@
     <!-- Import Styles -->
     <link rel="stylesheet" href="./assets/styles.css" />
     <!-- Import Vue.js -->
-    <script src="https://unpkg.com/vue@3.0.0-beta.12/dist/vue.global.js"></script>
+    <!-- <script src="https://unpkg.com/vue@3.0.0-beta.12/dist/vue.global.js"></script> -->
+    <script src="https://unpkg.com/vue@next"></script>
   </head>
   <body>
     <div id="app">
       <div class="nav-bar"></div>
 
-      <div class="cart">Cart({{ cart.length }})</div>
+      <div class="cart">Cart({{ cart.length }})
+        <div v-if="productLimit">Hi, You've added all the available quantity of the 
+      </div>
+      product </div>
       <product-display :premium="premium" @add-to-cart="updateCart"></product-display>
     </div>
 
